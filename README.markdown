@@ -48,13 +48,13 @@ $('#images-container').gridnav({
 
 ###The following parameters can be used/set:
 
-__rows:__ the number of rows to be shown in the grid
-__navL/navR:__ the selectors for the previous and next navigation elements
-__mode:__ the type of animation; you can use def | fade | seqfade | updown | sequpdown | showhide | disperse | rows
-__speed:__ the speed of the animation for fade, seqfade, updown, sequpdown, showhide, disperse, rows
-__easing:__ the easing effect for fade, seqfade, updown, sequpdown, showhide, disperse, rows
-__factor:__ delay between each item animation for seqfade, sequpdown; amount of pixels the row move when using rows
-__reverse:__ for reversing the order when using sequpdown
+* __rows:__ the number of rows to be shown in the grid
+* __navL/navR:__ the selectors for the previous and next navigation elements
+* __mode:__ the type of animation; you can use def | fade | seqfade | updown | sequpdown | showhide | disperse | rows
+* __speed:__ the speed of the animation for fade, seqfade, updown, sequpdown, showhide, disperse, rows
+* __easing:__ the easing effect for fade, seqfade, updown, sequpdown, showhide, disperse, rows
+* __factor:__ delay between each item animation for seqfade, sequpdown; amount of pixels the row move when using rows
+* __reverse:__ for reversing the order when using sequpdown
 
 
 ###The HTML
