@@ -343,13 +343,15 @@
                         return false;
                     }
                     
-                    var movingRows  = '';
+                    var movingRows  = [];
                     
                     for( var i = 0; i <= opts.rows; ++i ) {
-                        ( dir === 1 )
-                            ? movingRows += '.tj_row_' + (config.currentRow + i) + ','
-                            : movingRows += '.tj_row_' + (config.currentRow + (i - 1)) + ',';
+                        movingRows.push( dir === 1 
+                            ? '.tj_row_' + (config.currentRow + i) 
+                            : '.tj_row_' + (config.currentRow + (i - 1)));
                     }
+
+                    movingRows = movingRows.join(',')
                     
                     var seq_t   = opts.type.factor,
                         $elements;
