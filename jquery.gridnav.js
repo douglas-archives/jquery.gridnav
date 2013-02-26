@@ -56,6 +56,15 @@
                     $item.addClass('tj_row_' + row);
                 });
 
+                // Navigation dots
+                if ($d_nav.length > 0) {
+                    var _dots = [];
+                    for(var _i=0; _i < aux.get_pages($wrapper); _i++) _dots.push( $('<li />') );
+
+                    $d_nav.html(_dots).end().find('li:first-child').addClass('active');
+                    delete _dots;
+                }
+
                 nav.setup( $wrapper, $items, opts );
 
             },
@@ -68,6 +77,21 @@
                         top         : $item.position().top + 'px'
                     });
                 });
+            },
+            // Pagination
+            get_page            : function($wrapper) {
+                var config = $wrapper.data('config');
+                return Math.ceil( config.currentRow / config.rowCount );
+            },
+            get_pages           : function($wrapper) {
+                var config = $wrapper.data('config');
+                return Math.ceil( config.totalRows / config.rowCount );
+            },
+            has_next            : function($wrapper) {
+                return aux.get_page($wrapper) < aux.get_pages($wrapper) ? true : false;
+            },
+            has_prev            : function($wrapper) {
+                return aux.get_page($wrapper) > 1 ? true : false;
             }
         },
         // navigation types
@@ -667,6 +691,7 @@
                         rows    : 2,
                         navL    : '#tj_prev',
                         navR    : '#tj_next',
+                        navDots : '#tj_dots',
                         type    : {
                             mode        : 'def',        // use def | fade | seqfade | updown | sequpdown | showhide | disperse | rows
                             speed       : 500,          // for fade, seqfade, updown, sequpdown, showhide, disperse, rows
@@ -693,7 +718,8 @@
                             // the navigation elements
                             $p_nav          = $(settings.navL),
                             $n_nav          = $(settings.navR);
-                            $timeout = settings.type.timeout;
+                            $d_nav          = $(settings.navDots);
+                            $timeout        = settings.type.timeout;
                             $backToTop = true;
 
                         // save current row for later (first visible row)
@@ -721,7 +747,13 @@
                                             clearInterval(_interval);
                                             if( $wrapper.data( 'anim' ) ) return false;
                                             $wrapper.data( 'anim', true );
+
                                             nav[settings.type.mode].pagination( $wrapper, -1, settings );
+
+                                            // Paginator
+                                            $p_nav.removeClass('disabled').addClass(aux.has_prev($wrapper) ? '' : 'disabled');
+                                            $n_nav.removeClass('disabled').addClass(aux.has_next($wrapper) ? '' : 'disabled');
+                                            $d_nav.find('li').removeClass('active').end().find('li:nth-child('+ aux.get_page($wrapper)+')').addClass('active');
                                             return false;
                                         });
                                     }
@@ -731,6 +763,11 @@
                                             if( $wrapper.data( 'anim' ) ) return false;
                                             $wrapper.data( 'anim', true );
                                             nav[settings.type.mode].pagination( $wrapper, 1, settings );
+
+                                            // Paginator
+                                            $p_nav.removeClass('disabled').addClass(aux.has_prev($wrapper) ? '' : 'disabled');
+                                            $n_nav.removeClass('disabled').addClass(aux.has_next($wrapper) ? '' : 'disabled');
+                                            $d_nav.find('li').removeClass('active').end().find('li:nth-child('+ aux.get_page($wrapper) +')').addClass('active');
                                             return false;
                                         });
                                     }
@@ -742,11 +779,21 @@
                                             if( $wrapper.data( 'anim' ) ) return false;
                                             $wrapper.data( 'anim', true );
                                             nav[settings.type.mode].pagination( $wrapper, -1, settings );
+
+                                            // Paginator
+                                            $p_nav.removeClass('disabled').addClass(aux.has_prev($wrapper) ? '' : 'disabled');
+                                            $n_nav.removeClass('disabled').addClass(aux.has_next($wrapper) ? '' : 'disabled');
+                                            $d_nav.find('li').removeClass('active').end().find('li:nth-child('+ aux.get_page($wrapper) +')').addClass('active');
                                         }
                                         else {
                                             if( $wrapper.data( 'anim' ) ) return false;
                                             $wrapper.data( 'anim', true );
                                             nav[settings.type.mode].pagination( $wrapper, 1, settings );
+
+                                            // Paginator
+                                            $p_nav.removeClass('disabled').addClass(aux.has_prev($wrapper) ? '' : 'disabled');
+                                            $n_nav.removeClass('disabled').addClass(aux.has_next($wrapper) ? '' : 'disabled');
+                                            $d_nav.find('li').removeClass('active').end().find('li:nth-child('+ aux.get_page($wrapper) +')').addClass('active');
                                         }
                                         return false;
                                     });
