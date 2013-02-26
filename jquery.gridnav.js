@@ -3,7 +3,9 @@
  *
  * This plugin can be used freely in personal and commercial projects.
  * But just in case, you should read this http://tympanus.net/codrops/licensing/
- * "timeout" option added by Douglas Miranda - http://douglasmiranda.com
+ *
+ * "timeout" option added by Douglas Miranda  - http://douglasmiranda.com
+ * "navDots" option added by Mirko Chialastri <chialastri.mirko@gmail.com>
  */
 (function($) {
     jQuery.fn.reverse = Array.prototype.reverse;

@@ -36,8 +36,9 @@ $('#images-container').gridnav({
     rows: 2,
     navL: '#images-container-prev',
     navR: '#images-container-next',
+    navDots: '#images-container-dots',
     type: {
-        mode: 'sequpdown', 
+        mode: 'sequpdown',
         speed: 400,
         easing: '',
         factor: 50,
@@ -50,6 +51,7 @@ $('#images-container').gridnav({
 
 * __rows:__ the number of rows to be shown in the grid
 * __navL/navR:__ the selectors for the previous and next navigation elements
+* __navDots:__ the selectors for dots elements
 * __mode:__ the type of animation; you can use def | fade | seqfade | updown | sequpdown | showhide | disperse | rows
 * __speed:__ the speed of the animation for fade, seqfade, updown, sequpdown, showhide, disperse, rows
 * __easing:__ the easing effect for fade, seqfade, updown, sequpdown, showhide, disperse, rows
@@ -79,6 +81,7 @@ $('#images-container').gridnav({
             <li><a href="#"><img src="images/10.jpg" alt="image10" /></a></li>
         </ul>
     </div>
+    <ul id="images-container-dots"></ul>
 </div>
 ```
 
