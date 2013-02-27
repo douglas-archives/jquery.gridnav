@@ -45,6 +45,7 @@
                 config.totalRows    = totalRows;
                 config.rowCount     = rowCount;
                 config.shownItems   = shown;
+                config.rowsForPage  = opts.rows;
                 $wrapper.data('config', config);
 
                 // show n rowns
@@ -83,11 +84,11 @@
             // Pagination
             get_page            : function($wrapper) {
                 var config = $wrapper.data('config');
-                return Math.ceil( config.currentRow / config.rowCount );
+                return Math.ceil( config.currentRow / config.rowsForPage );
             },
             get_pages           : function($wrapper) {
                 var config = $wrapper.data('config');
-                return Math.ceil( config.totalRows / config.rowCount );
+                return Math.ceil( config.totalRows / config.rowsForPage );
             },
             has_next            : function($wrapper) {
                 return aux.get_page($wrapper) < aux.get_pages($wrapper) ? true : false;
