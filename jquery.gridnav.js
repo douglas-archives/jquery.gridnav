@@ -3,7 +3,9 @@
  *
  * This plugin can be used freely in personal and commercial projects.
  * But just in case, you should read this http://tympanus.net/codrops/licensing/
- * "timeout" option added by Douglas Miranda - http://douglasmiranda.com
+ *
+ * "timeout" option added by Douglas Miranda  - http://douglasmiranda.com
+ * "navDots" option added by Mirko Chialastri <chialastri.mirko@gmail.com>
  */
 (function($) {
     jQuery.fn.reverse = Array.prototype.reverse;
@@ -43,6 +45,7 @@
                 config.totalRows    = totalRows;
                 config.rowCount     = rowCount;
                 config.shownItems   = shown;
+                config.rowsForPage  = opts.rows;
                 $wrapper.data('config', config);
 
                 // show n rowns
@@ -56,6 +59,15 @@
                     $item.addClass('tj_row_' + row);
                 });
 
+                // Navigation dots
+                if ($d_nav.length > 0) {
+                    var _dots = [];
+                    for(var _i=0; _i < aux.get_pages($wrapper); _i++) _dots.push( $('<li />') );
+
+                    $d_nav.html(_dots).find('li:first-child').addClass('active');
+                    delete _dots;
+                }
+
                 nav.setup( $wrapper, $items, opts );
 
             },
@@ -68,6 +80,29 @@
                         top         : $item.position().top + 'px'
                     });
                 });
+            },
+            // Pagination
+            get_page            : function($wrapper) {
+                var config = $wrapper.data('config');
+                return Math.ceil( config.currentRow / config.rowsForPage );
+            },
+            get_pages           : function($wrapper) {
+                var config = $wrapper.data('config');
+                return Math.ceil( config.totalRows / config.rowsForPage );
+            },
+            has_next            : function($wrapper) {
+                return aux.get_page($wrapper) < aux.get_pages($wrapper) ? true : false;
+            },
+            has_prev            : function($wrapper) {
+                return aux.get_page($wrapper) > 1 ? true : false;
+            },
+            activateDot         : function($wrapper, settings) {
+                try {
+                    // Paginator
+                    $(settings.navL).removeClass('disabled').addClass(aux.has_prev($wrapper) ? '' : 'disabled');
+                    $(settings.navR).removeClass('disabled').addClass(aux.has_next($wrapper) ? '' : 'disabled');
+                    $(settings.navDots).find('li').removeClass('active').end().find('li:nth-child('+ aux.get_page($wrapper)+')').addClass('active');
+                } catch(e){ };
             }
         },
         // navigation types
@@ -127,6 +162,7 @@
                     $wrapper.data( 'anim', false );
 
                     $wrapper.data('config', config);
+                    aux.activateDot($wrapper, opts);
                 }
             },
             fade            : {
@@ -173,6 +209,7 @@
                     (dir === 1) ? config.currentRow += opts.rows : config.currentRow -= opts.rows;
 
                     $wrapper.data('config', config);
+                    aux.activateDot($wrapper, opts);
                 }
             },
             seqfade         : {
@@ -236,6 +273,7 @@
                     (dir === 1) ? config.currentRow += opts.rows : config.currentRow -= opts.rows;
 
                     $wrapper.data('config', config);
+                    aux.activateDot($wrapper, opts);
                 }
             },
             updown          : {
@@ -333,6 +371,7 @@
                     (dir === 1) ? config.currentRow += 1 : config.currentRow -= 1;
 
                     $wrapper.data('config', config);
+                    aux.activateDot($wrapper, opts);
                 }
             },
             sequpdown       : {
@@ -421,6 +460,7 @@
                     (dir === 1) ? config.currentRow += 1 : config.currentRow -= 1;
 
                     $wrapper.data('config', config);
+                    aux.activateDot($wrapper, opts);
                 }
             },
             showhide        : {
@@ -482,6 +522,7 @@
                     (dir === 1) ? config.currentRow += opts.rows : config.currentRow -= opts.rows;
 
                     $wrapper.data('config', config);
+                    aux.activateDot($wrapper, opts);
                 }
             },
             disperse        : {
@@ -569,6 +610,7 @@
                     (dir === 1) ? config.currentRow += opts.rows : config.currentRow -= opts.rows;
 
                     $wrapper.data('config', config);
+                    aux.activateDot($wrapper, opts);
                 }
             },
             rows            : {
@@ -655,6 +697,7 @@
                     (dir === 1) ? config.currentRow += opts.rows : config.currentRow -= opts.rows;
 
                     $wrapper.data('config', config);
+                    aux.activateDot($wrapper, opts);
                 }
             }
         },
@@ -667,12 +710,13 @@
                         rows    : 2,
                         navL    : '#tj_prev',
                         navR    : '#tj_next',
+                        navDots : '#tj_dots',
                         type    : {
                             mode        : 'def',        // use def | fade | seqfade | updown | sequpdown | showhide | disperse | rows
                             speed       : 500,          // for fade, seqfade, updown, sequpdown, showhide, disperse, rows
                             easing      : 'jswing',     // for fade, seqfade, updown, sequpdown, showhide, disperse, rows
                             factor      : 50,           // for seqfade, sequpdown, rows
-                            reverse     : false,            // for sequpdown
+                            reverse     : false,        // for sequpdown
                             timeout     : 3000
                         }
                     };
@@ -693,11 +737,14 @@
                             // the navigation elements
                             $p_nav          = $(settings.navL),
                             $n_nav          = $(settings.navR);
-                            $timeout = settings.type.timeout;
+                            $d_nav          = $(settings.navDots);
+                            $timeout        = settings.type.timeout;
                             $backToTop = true;
 
                         // save current row for later (first visible row)
                         //config.currentRow = 1;
+
+                        $p_nav.addClass('disabled');
 
                         // flag to control animation progress
                         $wrapper.data( 'anim', false );
@@ -809,3 +856,4 @@
         }
     };
 })(jQuery);
+
