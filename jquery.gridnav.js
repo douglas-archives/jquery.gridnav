@@ -64,7 +64,7 @@
                     var _dots = [];
                     for(var _i=0; _i < aux.get_pages($wrapper); _i++) _dots.push( $('<li />') );
 
-                    $d_nav.html(_dots).end().find('li:first-child').addClass('active');
+                    $d_nav.html(_dots).find('li:first-child').addClass('active');
                     delete _dots;
                 }
 
@@ -95,6 +95,14 @@
             },
             has_prev            : function($wrapper) {
                 return aux.get_page($wrapper) > 1 ? true : false;
+            },
+            activateDot         : function($wrapper, settings) {
+                try {
+                    // Paginator
+                    $(settings.navL).removeClass('disabled').addClass(aux.has_prev($wrapper) ? '' : 'disabled');
+                    $(settings.navR).removeClass('disabled').addClass(aux.has_next($wrapper) ? '' : 'disabled');
+                    $(settings.navDots).find('li').removeClass('active').end().find('li:nth-child('+ aux.get_page($wrapper)+')').addClass('active');
+                } catch(e){ };
             }
         },
         // navigation types
@@ -154,6 +162,7 @@
                     $wrapper.data( 'anim', false );
 
                     $wrapper.data('config', config);
+                    aux.activateDot($wrapper, opts);
                 }
             },
             fade            : {
@@ -200,6 +209,7 @@
                     (dir === 1) ? config.currentRow += opts.rows : config.currentRow -= opts.rows;
 
                     $wrapper.data('config', config);
+                    aux.activateDot($wrapper, opts);
                 }
             },
             seqfade         : {
@@ -263,6 +273,7 @@
                     (dir === 1) ? config.currentRow += opts.rows : config.currentRow -= opts.rows;
 
                     $wrapper.data('config', config);
+                    aux.activateDot($wrapper, opts);
                 }
             },
             updown          : {
@@ -360,6 +371,7 @@
                     (dir === 1) ? config.currentRow += 1 : config.currentRow -= 1;
 
                     $wrapper.data('config', config);
+                    aux.activateDot($wrapper, opts);
                 }
             },
             sequpdown       : {
@@ -448,6 +460,7 @@
                     (dir === 1) ? config.currentRow += 1 : config.currentRow -= 1;
 
                     $wrapper.data('config', config);
+                    aux.activateDot($wrapper, opts);
                 }
             },
             showhide        : {
@@ -509,6 +522,7 @@
                     (dir === 1) ? config.currentRow += opts.rows : config.currentRow -= opts.rows;
 
                     $wrapper.data('config', config);
+                    aux.activateDot($wrapper, opts);
                 }
             },
             disperse        : {
@@ -596,6 +610,7 @@
                     (dir === 1) ? config.currentRow += opts.rows : config.currentRow -= opts.rows;
 
                     $wrapper.data('config', config);
+                    aux.activateDot($wrapper, opts);
                 }
             },
             rows            : {
@@ -682,6 +697,7 @@
                     (dir === 1) ? config.currentRow += opts.rows : config.currentRow -= opts.rows;
 
                     $wrapper.data('config', config);
+                    aux.activateDot($wrapper, opts);
                 }
             }
         },
@@ -700,7 +716,7 @@
                             speed       : 500,          // for fade, seqfade, updown, sequpdown, showhide, disperse, rows
                             easing      : 'jswing',     // for fade, seqfade, updown, sequpdown, showhide, disperse, rows
                             factor      : 50,           // for seqfade, sequpdown, rows
-                            reverse     : false,            // for sequpdown
+                            reverse     : false,        // for sequpdown
                             timeout     : 3000
                         }
                     };
@@ -750,13 +766,7 @@
                                             clearInterval(_interval);
                                             if( $wrapper.data( 'anim' ) ) return false;
                                             $wrapper.data( 'anim', true );
-
                                             nav[settings.type.mode].pagination( $wrapper, -1, settings );
-
-                                            // Paginator
-                                            $p_nav.removeClass('disabled').addClass(aux.has_prev($wrapper) ? '' : 'disabled');
-                                            $n_nav.removeClass('disabled').addClass(aux.has_next($wrapper) ? '' : 'disabled');
-                                            $d_nav.find('li').removeClass('active').end().find('li:nth-child('+ aux.get_page($wrapper)+')').addClass('active');
                                             return false;
                                         });
                                     }
@@ -766,11 +776,6 @@
                                             if( $wrapper.data( 'anim' ) ) return false;
                                             $wrapper.data( 'anim', true );
                                             nav[settings.type.mode].pagination( $wrapper, 1, settings );
-
-                                            // Paginator
-                                            $p_nav.removeClass('disabled').addClass(aux.has_prev($wrapper) ? '' : 'disabled');
-                                            $n_nav.removeClass('disabled').addClass(aux.has_next($wrapper) ? '' : 'disabled');
-                                            $d_nav.find('li').removeClass('active').end().find('li:nth-child('+ aux.get_page($wrapper) +')').addClass('active');
                                             return false;
                                         });
                                     }
@@ -782,21 +787,11 @@
                                             if( $wrapper.data( 'anim' ) ) return false;
                                             $wrapper.data( 'anim', true );
                                             nav[settings.type.mode].pagination( $wrapper, -1, settings );
-
-                                            // Paginator
-                                            $p_nav.removeClass('disabled').addClass(aux.has_prev($wrapper) ? '' : 'disabled');
-                                            $n_nav.removeClass('disabled').addClass(aux.has_next($wrapper) ? '' : 'disabled');
-                                            $d_nav.find('li').removeClass('active').end().find('li:nth-child('+ aux.get_page($wrapper) +')').addClass('active');
                                         }
                                         else {
                                             if( $wrapper.data( 'anim' ) ) return false;
                                             $wrapper.data( 'anim', true );
                                             nav[settings.type.mode].pagination( $wrapper, 1, settings );
-
-                                            // Paginator
-                                            $p_nav.removeClass('disabled').addClass(aux.has_prev($wrapper) ? '' : 'disabled');
-                                            $n_nav.removeClass('disabled').addClass(aux.has_next($wrapper) ? '' : 'disabled');
-                                            $d_nav.find('li').removeClass('active').end().find('li:nth-child('+ aux.get_page($wrapper) +')').addClass('active');
                                         }
                                         return false;
                                     });
@@ -859,3 +854,4 @@
         }
     };
 })(jQuery);
+
