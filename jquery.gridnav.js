@@ -744,6 +744,8 @@
                         // save current row for later (first visible row)
                         //config.currentRow = 1;
 
+                        $p_nav.addClass('disabled');
+
                         // flag to control animation progress
                         $wrapper.data( 'anim', false );
 
