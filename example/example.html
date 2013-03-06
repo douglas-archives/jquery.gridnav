@@ -1,0 +1,176 @@
+<html>
+<head>
+    <title>Example</title>
+    <style type="text/css">
+        /* Thumbnail Effects Style */
+        #images-container {
+            height: 200px;
+            margin: 30px auto;
+            position: relative;
+            width: 600px;
+        }
+        .tj_gallery {
+            height: 200px;
+            list-style: none outside none;
+            padding: 0;
+        }
+        .tj_nav {
+            height: 70px;
+            position: absolute;
+            right: 0;
+            top: -20px;
+        }
+        .tj_nav span {
+            cursor: pointer;
+            height: 25px;
+            left: 0;
+            opacity: 0.7;
+            top: 0;
+            visibility:visible;
+            /*-webkit-transition: all 0.2s ease-in-out;
+            -moz-transition:all 0.2s ease-in-out;
+            -o-transition: all 0.2s ease-in-out;
+            -transition: all 0.2s ease-in-out;*/
+        }
+         .tj_nav span:hover {
+            opacity:1.0;
+        }
+        .tj_nav span.disabled{text-align:-9999px !important;visibility:hidden}
+
+        .tj_wrapper {
+            width:100%;
+            height:100%;
+            position:relative;
+            margin:0px auto;
+        }
+        .tj_wrapper ul li {
+            float:left;
+        }
+        .tj_wrapper ul li a {
+            outline:none;
+            display:block;
+            margin:5px;
+        }
+        .tj_wrapper ul li a img {
+            display:block;
+            border:none;
+            opacity:0.7;
+            -moz-box-shadow:2px 2px 4px #8e8e8e;
+            -webkit-box-shadow:2px 2px 4px #8e8e8e;
+            box-shadow:2px 2px 4px #8e8e8e;
+        }
+        .tj_wrapper ul li a img:hover {
+            opacity:1.0;
+        }
+        #images-container-dots {
+            list-style-type:none;
+        }
+        #images-container-dots li {
+            display:inline-block;
+            height:10px;
+            width:10px;
+            border-radius:50%;
+            display:inline-block;
+            border:1px solid black;
+            background-color:rgb(200, 200, 200);
+        }
+        #images-container-dots li.active {
+            border:1px solid white;
+            background-color:rgb(100, 100, 100);
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="images-container">
+        <div class="tj_nav"> 
+            <span id="images-container-prev">Previous</span>
+            <span id="images-container-next">Next</span>
+        </div>
+        <div class="tj_wrapper">
+            <ul class="tj_gallery">
+                <li>
+                    <a href="#">
+                        <img src="http://lorempixel.com/190/190/" alt="image01" />
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="http://lorempixel.com/q/190/190/" alt="image02" />
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="http://lorempixel.com/190/190/abstract" alt="image03" />
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="http://lorempixel.com/190/190/sports" alt="image04" />
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="http://lorempixel.com/190/190/food" alt="image05" />
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="http://lorempixel.com/190/190/nature" alt="image06" />
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="http://lorempixel.com/190/190/cats" alt="image07" />
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="http://lorempixel.com/190/190/city" alt="image08" />
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="http://lorempixel.com/190/190/fashion" alt="image09" />
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="http://lorempixel.com/190/190/business" alt="image10" />
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="http://lorempixel.com/190/190/nightlife" alt="image11" />
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="http://lorempixel.com/190/190/technics" alt="image12" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <ul id="images-container-dots"></ul>
+    </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script type="text/javascript" src="../jquery.gridnav.min.js"></script>
+    <script type="text/javascript">
+        $('#images-container').gridnav({
+            rows: 1,
+            navL: '#images-container-prev',
+            navR: '#images-container-next',
+            navDots: '#images-container-dots',
+            type: {
+                timeout: 4000,
+                mode: 'sequpdown',
+                speed: 400,
+                easing: '',
+                factor: 50,
+                reverse: false
+            }
+        });
+    </script>
+</body>
+</html>
