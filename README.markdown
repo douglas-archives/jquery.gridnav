@@ -4,9 +4,11 @@ Shared by [Mary Lou](https://twitter.com/crnacura) on [Codrops](http://tympanus.
 
 ##Examples
 
-You can see the examples [here](http://tympanus.net/codrops/2011/06/09/grid-navigation-effects/)
+You can see the original examples [here](http://tympanus.net/codrops/2011/06/09/grid-navigation-effects/)
 
-##What I've changed
+You can [download](https://github.com/douglasmiranda/jquery.gridnav/archive/master.zip) and see the new features on the [example/example.html](https://github.com/douglasmiranda/jquery.gridnav/blob/master/example/example.html).
+
+##What Changed?
 
 Originally the plugin do not provide the option "auto", that is, to see more images you have to click in "next" or "prev" button.
 
@@ -27,7 +29,6 @@ $(function() {
 ```
 
 Then, every 4 seconds the images will move automatically.
-
 
 ##What others options do I have?
 
@@ -59,33 +60,12 @@ $('#images-container').gridnav({
 * __reverse:__ for reversing the order when using sequpdown
 
 
-###The HTML
+###Contributors
 
-```html
-<div id="images-container">
-    <div class="nav">
-        <span id="images-container-prev">Previous</span>
-        <span id="images-container-prev">Next</span>
-    </div>
-    <div class="wrapper">
-        <ul class="gallery">
-            <li><a href="#"><img src="images/1.jpg" alt="image01" /></a></li>
-            <li><a href="#"><img src="images/2.jpg" alt="image02" /></a></li>
-            <li><a href="#"><img src="images/3.jpg" alt="image03" /></a></li>
-            <li><a href="#"><img src="images/4.jpg" alt="image04" /></a></li>
-            <li><a href="#"><img src="images/5.jpg" alt="image05" /></a></li>
-            <li><a href="#"><img src="images/6.jpg" alt="image06" /></a></li>
-            <li><a href="#"><img src="images/7.jpg" alt="image07" /></a></li>
-            <li><a href="#"><img src="images/8.jpg" alt="image08" /></a></li>
-            <li><a href="#"><img src="images/9.jpg" alt="image09" /></a></li>
-            <li><a href="#"><img src="images/10.jpg" alt="image10" /></a></li>
-        </ul>
-    </div>
-    <ul id="images-container-dots"></ul>
-</div>
-```
+These guys help me make it better. Thanks, guys!
 
-More info in [Examples](#examples)
+[@hiryu85](https://github.com/hiryu85)
+[@nbraem](https://github.com/nbraem)
 
 ##Licence
 
