@@ -2,6 +2,10 @@
 
 Shared by [Mary Lou](https://twitter.com/crnacura) on [Codrops](http://tympanus.net/codrops/), the jQuery plugin for grid navigation through a set of thumbnails is perfect for galleries, featured images or what else you want.
 
+## Screenshots
+
+<img src="https://raw.github.com/douglasmiranda/jquery.gridnav/master/jquery-gridnav-preview.png">
+
 ##Examples
 
 You can see the original examples [here](http://tympanus.net/codrops/2011/06/09/grid-navigation-effects/)
