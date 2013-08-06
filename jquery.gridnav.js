@@ -326,7 +326,7 @@
 
                     $elements.each(function(i) {
                         var $el         = $(this),
-                            row         = $el.attr('class'),
+                            row         = $el.attr('class').split(' ').pop(),
                             animParam   = {},
 
                             currentRow  = config.currentRow;
@@ -413,7 +413,7 @@
 
                     $elements.each(function(i) {
                         var $el         = $(this),
-                            row         = $el.attr('class'),
+                            row         = $el.attr('class').split(' ').pop(),
                             animParam   = {},
 
                             currentRow  = config.currentRow;
@@ -642,7 +642,7 @@
 
                     $wrapper.children(currentRows).each(function(i) {
                         var $el     = $(this),
-                            rownmb  = $el.attr('class').match(/tj_row_(\d+)/)[1],
+                            rownmb  = $el.attr('class').split(' ').pop().match(/tj_row_(\d+)/)[1],
                             diff;
 
                         if( rownmb%2 === 0 ) {
@@ -668,7 +668,7 @@
 
                     $nextRowElements.each(function(i) {
                         var $el = $(this),
-                            rownmb  = $el.attr('class').match(/tj_row_(\d+)/)[1],
+                            rownmb  = $el.attr('class').split(' ').pop().match(/tj_row_(\d+)/)[1],
                             diff;
 
                         if( rownmb%2 === 0 ) {
