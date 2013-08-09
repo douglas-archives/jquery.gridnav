@@ -1,24 +1,24 @@
-#jquery.gridnav - Grid Navigation Effects with jQuery
+# Grid Navigation Effects with jQuery
 
-Shared by [Mary Lou](https://twitter.com/crnacura) on [Codrops](http://tympanus.net/codrops/), the jQuery plugin for grid navigation through a set of thumbnails is perfect for galleries, featured images or what else you want.
+jquery.gridnav, presented by [Mary Lou](https://twitter.com/crnacura) on [Codrops](http://tympanus.net/codrops/), is the jQuery plugin for grid navigation through a set of thumbnails. Is perfect for galleries, featured images or what else you want.
 
 ## Screenshots
 
 <img src="https://raw.github.com/douglasmiranda/jquery.gridnav/master/jquery-gridnav-preview.png">
 
-##Examples
+## Examples
 
 You can see the original examples [here](http://tympanus.net/codrops/2011/06/09/grid-navigation-effects/)
 
 You can [download](https://github.com/douglasmiranda/jquery.gridnav/archive/master.zip) and see the new features on the [example/example.html](https://github.com/douglasmiranda/jquery.gridnav/blob/master/example/example.html).
 
-##What Changed?
+## What Changed?
 
 Originally the plugin do not provide the option "auto", that is, to see more images you have to click in "next" or "prev" button.
 
 I added a way to do this.
 
-##How?
+## How?
 
 The "timeout" option have to be added when initializing the plugin.
 
@@ -34,7 +34,7 @@ $(function() {
 
 Then, every 4 seconds the images will move automatically.
 
-##What others options do I have?
+## What others options do I have?
 
 ```javascript
 $('#images-container').gridnav({
@@ -52,7 +52,7 @@ $('#images-container').gridnav({
 });
 ```
 
-###The following parameters can be used/set:
+### The following parameters can be used/set:
 
 * __rows:__ the number of rows to be shown in the grid
 * __navL/navR:__ the selectors for the previous and next navigation elements
@@ -64,13 +64,13 @@ $('#images-container').gridnav({
 * __reverse:__ for reversing the order when using sequpdown
 
 
-###Contributors
+### Contributors
 
 These guys help me make it better. Thanks, guys!
 
 [@hiryu85](https://github.com/hiryu85)
 [@nbraem](https://github.com/nbraem)
 
-##Licence
+## Licence
 
 This plugin can be used freely in personal and commercial projects. But just in case, you should read this http://tympanus.net/codrops/licensing/
